@@ -1,0 +1,6 @@
+# Preferences for mavin personal assistant (c) 2015
+# Designed by Henry Seed 
+# Christchurch, New Zealand
+
+location:2348327
+name:Henry
