@@ -1,7 +1,7 @@
 import datetime
 
 def find_time():
-    '''finds adn then returns time in 12 hr format hh:mm'''
+    '''finds amd then returns time in 12 hr format hh:mm'''
     hour = int(datetime.datetime.strftime(datetime.datetime.now(), '%H'))
     minutes = datetime.datetime.strftime(datetime.datetime.now(), '%M')
         
@@ -31,4 +31,5 @@ def find_time():
         
     else:
         print('It\'s ' + str(hour) + ':' + str(minutes) + ' in the morning')
+        
         
