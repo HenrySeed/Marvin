@@ -5,8 +5,8 @@ from options import *
 from personality import *
 from encrypter import *
 from marvin_naughtscrosses import *
-from random import randint
 
+global CLOSE
 
 def welcome():
     statements = ['\nHow can I help?', '\nWhat do you need me to do?', \
@@ -46,8 +46,9 @@ def console():
                 ('What can you do', help),
                 ('what are you', help),
                 ('what', help),
+                ('clear', clear_w_logo),
                 ('nevermind', okay),
-                ('clear', clear_w_logo)
+                ('ip', ip)
                 ]
     
 
@@ -57,21 +58,24 @@ def console():
     understood = False
     index = 0
     
-    if 'encrypt' in query:encrypt(query)
+    if 'encrypt' in query:
+        encrypt(query)
+        return None
         
-    elif 'decrypt' in query: decrypt(query)
+    if 'decrypt' in query:
+        decrypt(query)
+        return None
+    
+    for string, command in commands:
+        if string in query:
+            commands[index][1]()
+            understood = True
+            break
         
-    else:
-        for string, command in commands:
-            if string in query:
-                commands[index][1]()
-                understood = True
-                break
+        index += 1
             
-            index += 1
-                
-        if understood == False:
-            problem()
+    if understood == False:
+        problem()
 
 
 def gift_shop():

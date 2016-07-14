@@ -3,6 +3,7 @@ from marvin_naughtscrosses import *
 import os
 import sys
 import logo
+import subprocess
 
 def calculator():
     '''type calculator and then you can enter equations to be answered'''
@@ -82,3 +83,9 @@ def clear_w_logo():
     if sys.stdin.isatty():
         os.system('clear')
         logo.logo()
+        
+def ip():
+    proc = subprocess.Popen(['dig +short myip.opendns.com @resolver1.opendns.com'], stdout=subprocess.PIPE, shell=True)
+    (out, err) = proc.communicate()
+
+    print('Your current ip is ' + str(out)[2:-3])
