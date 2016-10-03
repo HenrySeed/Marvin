@@ -1,5 +1,5 @@
 from random import randint
-import console
+from terminal_info import terminal_info
 
 def logo():
     
@@ -14,7 +14,7 @@ def logo():
     
     quote = quotes[randint(0, len(quotes)-1)]
     
-    width, height = console.getTerminalSize()
+    width, height = terminal_info.getTerminalSize()
     
     spacer = (width - 77)//2 * ' '
     

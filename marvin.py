@@ -1,10 +1,15 @@
-from utilities import *
-from marvin_time import find_time
-from logo import *
-from options import *
-from personality import *
-from encrypter import *
-from marvin_naughtscrosses import *
+from marvin_utils import utilities
+from marvin_utils import logo
+from marvin_utils import encrypter
+from marvin_utils import options
+from marvin_utils import personality
+
+from projectr import projectr
+from terminal_info import *
+from naughts_crosses import *
+from cute_time import cute_time
+from calc import calc
+
 
 global CLOSE
 
@@ -17,40 +22,39 @@ def welcome():
 def console():
     '''asks how to help then redirects to other functions'''
     
-    commands = [('thanks', thanks),
-                ('thank', thanks),  
-                ('time', find_time),
-                ('calculator', calculator),
-                ('calc', calculator),
-                ('new cipher', new_cipher),
-                ('options', options),
-                ('settings', options),
-                ('preferences', options),
-                ('prefs', options),
-                ('help', help),
-                ('what can i do', help),
-                ('man marvin', help),
-                ('shit', curse_words),
-                ('fuck', curse_words),
+    commands = [('thanks', utilities.thanks),
+                ('thank', utilities.thanks),  
+                ('time', cute_time.find_time),
+                ('calculator', calc.calculator),
+                ('calc', calc.calculator),
+                ('new cipher', encrypter.new_cipher),
+                ('options', options.options),
+                ('settings', options.options),
+                ('preferences', options.options),
+                ('prefs', options.options),
+                ('help', utilities.help),
+                ('what can i do', utilities.help),
+                ('man marvin', utilities.help),
+                ('shit', utilities.curse_words),
+                ('fuck', utilities.curse_words),
                 ('goodbye', gift_shop),
                 ('quit', gift_shop),
                 ('close', gift_shop),
                 ('see ya', gift_shop),
-                ('how are you', personality),
-                ('whats up', personality),
-                ('how you doin', personality),
+                ('how are you', personality.personality),
+                ('whats up', personality.personality),
+                ('how you doin', personality.personality),
                 ('gift shop', gift_shop),
-                ('game', game),
-                ('games', game),
-                ('play', game),
-                ('What can you do', help),
-                ('what are you', help),
-                ('what', help),
-                ('clear', clear_w_logo),
-                ('nevermind', okay),
-                ('ip', ip)
+                ('game', utilities.game),
+                ('games', utilities.game),
+                ('play', utilities.game),
+                ('What can you do', utilities.help),
+                ('what are you', utilities.help),
+                ('what', utilities.help),
+                ('clear', utilities.clear_w_logo),
+                ('nevermind', utilities.okay),
+                ('ip', utilities.ip)
                 ]
-    
 
     query = input('\n> ')
     print()
@@ -65,6 +69,11 @@ def console():
     if 'decrypt' in query:
         decrypt(query)
         return None
+
+    if ('new' in query or 'project' in query) and 'html' in query:
+        projectr.html()
+        return None
+
     
     for string, command in commands:
         if string in query:
@@ -80,17 +89,17 @@ def console():
 
 def gift_shop():
     print('\nSee you later Henry\n\n')
-    clear()
+    utilities.clear()
     quit()
 
 
 def main():
-    clear()
-    logo()
+    utilities.clear()
+    logo.logo()
     while 4 == 4:
         console()
     
-    clear()
+    utilities.clear()
 
 
 main()

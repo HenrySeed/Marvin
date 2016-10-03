@@ -1,5 +1,5 @@
-from RSA import *
-from options import *
+import rsa
+from marvin_utils import options
 
 def new_cipher():
     cipher = RSA_Cipher()
@@ -11,17 +11,24 @@ def new_cipher():
         options.change_cipher(cipher.public_key, cipher.private_key)
         options.save()
         print('saved')
-        
-        
+
+
 def encrypt(message):
+    options = Options()
+    
+    rsa.encrypt(options.public_key)
+
+def decrypt(message):
+    options = Options()
+    rsa.decrypt(options.public_key)
+        
+def encrypt(public_key, message):
     '''
     Encrypts ciphertext, with public key.
     '''    
     
-    options = Options()
-    
-    e = options.public_key[1]
-    n = options.public_key[0]    
+    e = public_key[1]
+    n = public_key[0]    
     
     cipher_text = ''
     
@@ -35,15 +42,13 @@ def encrypt(message):
     print(cipher_text[:-1])
     
     
-def decrypt(cipher_text):
+def decrypt(private_key, cipher_text):
     '''
     Decrypts ciphertext, with private key.
     '''
     
-    options = Options()
-    
-    d = options.private_key[1]
-    n = options.private_key[0]    
+    e = public_key[1]
+    n = public_key[0]       
 
     encrypted_ascii_mess = cipher_text[8:].split(' ')
 

@@ -1,19 +1,11 @@
 import random
-from marvin_naughtscrosses import *
 import os
 import sys
-import logo
 import subprocess
 
-def calculator():
-    '''type calculator and then you can enter equations to be answered'''
-    equation = input('    Enter an equation:\n\n    > ')
-    try:
-        print('\n    = ' + str(eval(equation)))
-    except:
-        print('\n    Please enter a valid math equation\n')
-        calculator()
-    
+
+from marvin_utils import logo
+from naughts_crosses import naughts_crosses
     
 def thanks():
     print('It\'s all good')
@@ -62,7 +54,7 @@ def game():
     choice = input('\n    > ')
     
     if choice == 'yes' or choice == 'y':
-        naughtscrosses()
+        naughts_crosses.naughtscrosses()
         
     elif choice == 'no' or choice == 'n':
         print('\n    Well thats the only one I have at the moment, sorry')
