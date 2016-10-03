@@ -63,11 +63,11 @@ def console():
     index = 0
     
     if 'encrypt' in query:
-        encrypt(query)
+        encrypter.encrypt(query)
         return None
         
     if 'decrypt' in query:
-        decrypt(query)
+        encrypter.decrypt(query)
         return None
 
     if ('new' in query or 'project' in query) and 'html' in query:

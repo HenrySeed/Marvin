@@ -6,6 +6,7 @@ import subprocess
 
 from marvin_utils import logo
 from naughts_crosses import naughts_crosses
+from northwood_vale import northwood_vale
     
 def thanks():
     print('It\'s all good')
@@ -31,11 +32,11 @@ def help():
         different other inputs as well so you always get what you want.''')    
     
     
-
 def curse_words():
     print('Look, I can see you\'re really upset about this. \n\
 I honestly think you ought to sit down calmly, take a \n\
-stress pill, and think things over.')    
+stress pill, and think things over.')   
+
     
 def problem():
     problem = ['Sorry I don\'t think i can do that.', 'What was that?', \
@@ -46,25 +47,27 @@ def problem():
     
     
 def game():
-    problem = ['Sorry I don\'t think i can do that.', 'What was that?', \
-                'What do you need me to do again?', 'Sorry what was that?',\
-                'I\'m sorry, Dave. I\'m afraid I can\'t do that.']  
     
-    print('    Would you like to play Noughts and Crosses?')
+    print('    (1) Noughts and Crosses. A classic kids game')
+    print('    (2) Northwood Vale. A text based adventure game')
     choice = input('\n    > ')
     
-    if choice == 'yes' or choice == 'y':
+    if '1' in choice:
         naughts_crosses.naughtscrosses()
+
+    elif '2' in choice:
+        northwood_vale.main()
+        clear_w_logo()
+
         
-    elif choice == 'no' or choice == 'n':
-        print('\n    Well thats the only one I have at the moment, sorry')
+    elif choice == 'close' or choice == 'q':
+        print('\n    Well these are the only ones I have at the moment, sorry')
         
     else:
         print()
-        print('    ' + problem[random.randint(0, (len(problem)-1))])
+        print('    ' + problem())
         print()
         game()
-        
         
         
 def clear():

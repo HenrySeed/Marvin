@@ -74,3 +74,12 @@ def options(intro=False):
         else:
             print('\n    To change an option just type \'change\' and then the option name')
             print('    To quit just type \'quit\' or \'close\'\n') 
+
+
+def public_key():
+    options = Options()
+    return options.public_key
+
+def private_key():
+    options = Options()
+    return options.private_key
