@@ -1,0 +1,4 @@
+
+[submodule "northwood_dale"]
+	path = northwood_dale
+	url = https://github.com/HenrySeed/northwood_dale.git
