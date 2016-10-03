@@ -34,4 +34,9 @@ def logo():
 {1}                                           |_________________________|       
     '''.format(quote, spacer)
     
-    print('{0:>200}'.format(logo))
+
+    if width < 78:
+        spacer = (width - 8)//2 * ' '
+        print("\n\n" + spacer + "[MARVIN]\n\n")
+    else:
+        print('{0:>200}'.format(logo))

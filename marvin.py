@@ -73,8 +73,11 @@ def console():
     if ('new' in query or 'project' in query) and 'html' in query:
         projectr.html()
         return None
-
     
+    if query == 'q':
+        gift_shop()
+        return None
+
     for string, command in commands:
         if string in query:
             commands[index][1]()
@@ -84,7 +87,7 @@ def console():
         index += 1
             
     if understood == False:
-        problem()
+        utilities.problem()
 
 
 def gift_shop():
