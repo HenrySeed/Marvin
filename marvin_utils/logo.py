@@ -16,7 +16,7 @@ def logo():
     
     width, height = terminal_info.getTerminalSize()
     
-    spacer = (width - 77)//2 * ' '
+    spacer_wide = (width - 77)//2 * ' '
     
     logo = '''
 {1} __________________________________________________________________________
@@ -32,11 +32,26 @@ def logo():
 {1}                                           |                         |       
 {1}   {0:37}   |       Version 2.03      |       
 {1}                                           |_________________________|       
-    '''.format(quote, spacer)
+    '''.format(quote, spacer_wide)
+
+
+    spacer_narrow = (width - 50)//2 * ' '
+    logo_small = '''
+{0} _______________________________________________ 
+{0}|                                               |
+{0}|  ##   ##   ##   ###### #    # ####### #    #  |
+{0}|  ### ###  #  #  #    # #    #    #    ##   #  |
+{0}|  # ### #  ####  #####  #    #    #    # ## #  |
+{0}|  #  #  # #    # #    #  #  #     #    #   ##  |
+{0}|  #     # #    # #    #   #    ####### #    #  |
+{0}|_______________________________________________|
+{0}                   |                         |
+{0}                   |       Version 2.03      |
+{0}                   |_________________________|   
+'''.format(spacer_narrow)
     
 
     if width < 78:
-        spacer = (width - 8)//2 * ' '
-        print("\n\n" + spacer + "[MARVIN]\n\n")
+        print(logo_small)
     else:
         print('{0:>200}'.format(logo))
