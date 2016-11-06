@@ -6,7 +6,6 @@ import subprocess
 
 from marvin_utils import logo
 from naughts_crosses import naughts_crosses
-from northwood_dale import northwood_dale
     
 def thanks():
     print('It\'s all good')
@@ -49,15 +48,10 @@ def problem():
 def game():
     
     print('    (1) Noughts and Crosses. A classic kids game')
-    print('    (2) Northwood Dale. A text based adventure game')
     choice = input('\n    > ')
     
     if '1' in choice:
         naughts_crosses.naughtscrosses()
-
-    elif '2' in choice:
-        northwood_dale.main()
-        clear_w_logo()
 
         
     elif choice == 'close' or choice == 'q':
