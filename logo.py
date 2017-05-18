@@ -31,6 +31,8 @@ def getTerminalSize():
 
 def logo():
 
+    version = '1.0'
+
     quotes = ["Throws errors so you don\'t have to.", "Functional Killer Robot",\
               "Sweet talkin woman", "Hard work'n man", "Scandelously self-consumed", \
               "Generally a nice guy", "Sometimes cares", "Gets angry at melancholy doors",
@@ -58,8 +60,8 @@ def logo():
 {1}|  ###       ### ###    ### ###    ###    ####    ########### ###    ####  |
 {1}|__________________________________________________________________________|
 {1}                                           |                         |
-{1}   {0:37}   |       Version 2.04      |
+{1}   {0:37}   |       Version {2:4}      |
 {1}                                           |_________________________|
-    '''.format(quote, spacer)
+    '''.format(quote, spacer, version)
 
     print('{0:>200}'.format(logo))
