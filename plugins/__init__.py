@@ -7,8 +7,9 @@ most of the code is just nicked from stack overflow duh.
 
 installed_plugins = []
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
-for name in os.listdir("plugins"):
+for name in os.listdir(dir_path):
     if name.endswith(".py") and name != '__init__.py':
           #strip the extension
          module = name[:-3]

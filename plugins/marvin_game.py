@@ -3,6 +3,8 @@ import os
 import sys
 from logo import logo
 
+global DIR_PATH
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 def clear_w_logo():
     if sys.stdin.isatty():
@@ -11,7 +13,8 @@ def clear_w_logo():
 
 def all_games():
     installed_games = []
-    for name in os.listdir("plugins/games"):
+
+    for name in os.listdir(DIR_PATH + "/games"):
         if name not in ['__init__.py', '.DS_Store']:
              name = name.replace('_', ' ')
              name = name.title()
@@ -46,7 +49,7 @@ def play_game(query):
 
             if sys.stdin.isatty():
                 os.system('clear')
-            os.system('python3 plugins/games/' + game + '/main.py')
+            os.system('python3 ' + DIR_PATH + '/games/' + game + '/main.py')
             clear_w_logo()
 
         else:
@@ -64,7 +67,7 @@ def play_game(query):
             if game in guesses:
                 if sys.stdin.isatty():
                     os.system('clear')
-                os.system('python3 plugins/games/' + game + '/main.py')
+                os.system('python3 ' + DIR_PATH + '/games/' + game + '/main.py')
                 clear_w_logo()
             else:
                 print('I don\'t seem to have that game sorry')
