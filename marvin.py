@@ -1,108 +1,122 @@
-from marvin_utils import utilities
-from marvin_utils import logo
-from marvin_utils import encrypter
-from marvin_utils import options
-from marvin_utils import personality
+from options import *
+from random import randint
+import sys
+import os
+from logo import logo
 
-from projectr import projectr
-from terminal_info import *
-from naughts_crosses import *
-from cute_time import cute_time
-from calc import calc
+from plugins import *
 
 
-global CLOSE
-
-def welcome():
-    statements = ['\nHow can I help?', '\nWhat do you need me to do?', \
-                  '\nWhat do you need?']
-    print(statements[random.randint(0, 2)])
-
-
-def console():
-    '''asks how to help then redirects to other functions'''
-    
-    commands = [('thanks', utilities.thanks),
-                ('thank', utilities.thanks),  
-                ('time', cute_time.find_time),
-                ('calculator', calc.calculator),
-                ('calc', calc.calculator),
-                ('new cipher', encrypter.new_cipher),
-                ('options', options.options),
-                ('settings', options.options),
-                ('preferences', options.options),
-                ('prefs', options.options),
-                ('help', utilities.help),
-                ('what can i do', utilities.help),
-                ('man marvin', utilities.help),
-                ('shit', utilities.curse_words),
-                ('fuck', utilities.curse_words),
-                ('goodbye', gift_shop),
-                ('quit', gift_shop),
-                ('close', gift_shop),
-                ('see ya', gift_shop),
-                ('how are you', personality.personality),
-                ('whats up', personality.personality),
-                ('how you doin', personality.personality),
-                ('gift shop', gift_shop),
-                ('game', utilities.game),
-                ('games', utilities.game),
-                ('play', utilities.game),
-                ('What can you do', utilities.help),
-                ('what are you', utilities.help),
-                ('what', utilities.help),
-                ('clear', utilities.clear_w_logo),
-                ('nevermind', utilities.okay),
-                ('ip', utilities.ip)
+def help():
+    help_options = [('options', 'Prints your current settings'),
+                ('help', 'Displays this message'),
+                ('quit', 'Quits marvin'),
+                ('clear', 'Clears the screen'),
+                ('plugins', 'Shows the currently loaded plugins')
                 ]
+
+    for i in installed_plugins:
+        help_options += (sys.modules['plugins.' + i].help_options)
+
+    print('''    I\'m Marvin and I can help you with some simple tasks:
+
+    Available Commands:
+    ''')
+    for i in help_options:
+        print('        ' + i[0] + ':   ' + i[1])
+
+    print('''
+    Because I am designed for easy Human use, many commands will run on
+    different other inputs as well so you always get what you want.''')
+
+
+def problem():
+    problem = ['Sorry I don\'t think i can do that.', 'What was that?', \
+                'What do you need me to do again?', 'Sorry what was that?',\
+                'I\'m sorry, Dave. I\'m afraid I can\'t do that.']
+
+    print('    '  + problem[randint(0, (len(problem)-1))])
+
+def clear():
+    if sys.stdin.isatty():
+        os.system('clear')
+
+def clear_w_logo():
+    if sys.stdin.isatty():
+        os.system('clear')
+        logo()
+
+def close():
+    print('\n    See you later Henry\n\n')
+    clear()
+    quit()
+
+def print_plugins():
+    print('    Plugins installed in marvin/plugins:')
+    for i in installed_plugins:
+        print('     + ' + i)
+
+def marvin():
+    '''asks how to help then redirects to other functions'''
+
+    commands = [('options', options),
+                ('settings', options),
+                ('preferences', options),
+                ('prefs', options),
+                ('help', help),
+                ('what can i do', help),
+                ('man marvin', help),
+                ('goodbye', close),
+                ('quit', close),
+                ('q', close),
+                ('close', close),
+                ('see ya', close),
+                ('clear', clear_w_logo),
+                ('plugins', print_plugins)
+                ]
+
+    for i in installed_plugins:
+        commands += (sys.modules['plugins.' + i].commands)
 
     query = input('\n> ')
     print()
-    
+
     understood = False
-    index = 0
-    
+
     if 'encrypt' in query:
-        encrypter.encrypt(query)
-        return None
-        
-    if 'decrypt' in query:
-        encrypter.decrypt(query)
+        encrypt(query)
         return None
 
-    if ('new' in query or 'project' in query) and 'html' in query:
-        projectr.html()
+    if 'decrypt' in query:
+        decrypt(query)
         return None
-    
-    if query == 'q':
-        gift_shop()
+
+    if 'change' in query:
+        list_query = query.split(' ')
+        change_option(list_query[1])
         return None
 
     for string, command in commands:
         if string in query:
-            commands[index][1]()
+            try:
+                query = query.split(' ')
+                command(query)
+            except TypeError:
+                command()
+
             understood = True
             break
-        
-        index += 1
-            
+
     if understood == False:
-        utilities.problem()
-
-
-def gift_shop():
-    print('\nSee you later Henry\n\n')
-    utilities.clear()
-    quit()
+        problem()
 
 
 def main():
-    utilities.clear()
-    logo.logo()
+    clear()
+    logo()
     while 4 == 4:
-        console()
-    
-    utilities.clear()
+        marvin()
+    clear()
 
 
 main()
