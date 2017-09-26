@@ -5,13 +5,12 @@ class Options():
     def __init__(self):
         scriptpath = os.path.dirname(__file__)
         filename = os.path.join(scriptpath, 'options.txt')
-        infile = open(filename, 'r').read()
+        lines = open(filename, 'r').read()
+        lines = lines.split('\n')
 
-        line = infile.split(',')
-
-        self.name, self.location = line[0], line[1]
-        self.public_key = (int(line[2][1:]),int(line[3][1:-1]))
-        self.private_key = (int(line[4][1:]),int(line[5][1:-1]))
+        self.name, self.location = lines[0], lines[1]
+        self.public_key = (int(lines[2].split(', ')[0]), int(lines[2].split(', ')[1]))
+        self.private_key = (int(lines[3].split(', ')[0]), int(lines[3].split(', ')[1]))
 
 
     def save(self):
@@ -19,8 +18,8 @@ class Options():
         filename = os.path.join(scriptpath, 'options.txt')
         infile = open(filename, 'w')
 
-        output = self.name + ',' + str(self.location) + ',' + \
-            str(self.public_key) + ',' + str(self.private_key)
+        output = self.name + '\n' + str(self.location) + '\n' + \
+            str(self.public_key)[1:-1] + '\n' + str(self.private_key)[1:-1]
 
         infile.write(output)
         infile.close()
