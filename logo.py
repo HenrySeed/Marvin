@@ -33,16 +33,7 @@ def logo():
 
     version = '1.0'
 
-    quotes = ["Throws errors so you don\'t have to.", "Functional Killer Robot",\
-              "Sweet talkin woman", "Hard work'n man", "Scandelously self-consumed", \
-              "Generally a nice guy", "Sometimes cares", "Gets angry at melancholy doors",
-              "Not overly content, for a robot", "Witty, for a robot", \
-              "Running for president", "Marvin for president 2016!", "Version 2 !!!"]
-
-    for i in quotes:
-        quotes[quotes.index(i)] = "{0:37}".format("\"" + i + "\"")
-
-    quote = quotes[randint(0, len(quotes)-1)]
+    quote = "Throws errors so you don\'t have to."
 
     width, height = getTerminalSize()
 
