@@ -11,7 +11,7 @@ plugins/games/*
 *.exe
 *.o
 *.so
-__pycache__
+
 
 
 # Packages #
