@@ -12,6 +12,7 @@ plugins/games/*
 *.o
 *.so
 
+*.DS_Store
 
 
 # Packages #
