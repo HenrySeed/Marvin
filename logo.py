@@ -1,4 +1,5 @@
 from random import randint
+from colors import colors, crayon
 
 def getTerminalSize():
     import os
@@ -29,14 +30,13 @@ def getTerminalSize():
         #    cr = (25, 80)
     return int(cr[1]), int(cr[0])
 
+
+
 def logo():
 
     version = '1.0'
-
     quote = "Throws errors so you don\'t have to."
-
     width, height = getTerminalSize()
-
     spacer = (width - 77)//2 * ' '
 
     logo = '''
@@ -55,4 +55,43 @@ def logo():
 {1}                                           |_________________________|
     '''.format(quote, spacer, version)
 
-    print('{0:>200}'.format(logo))
+    color_logo = '''
+{1} __________________________________________________________________________
+{1}|                                                                          |
+{1}|  ****   ****      ****    *********  ***    *** *********** ****    ***  |
+{1}|  *###***####*    *####*   *##    *## *##    *##     *##     *####   *##  |
+{1}|  *## *#### *##  *##  *##  *##    *## *##    *##     *##     *#####  *##  |
+{1}|  *##  *##  *## *##****### *##****##  *##    *##     *##     *###### *##  |
+{1}|  *##       *## *##    *## *##    *##  *##  *##      *##     *## ###*###  |
+{1}|  *##       *## *##    *## *##    *##   *#**##       *##     *##   #####  |
+{1}|  *##       *## *##    *## *##    *##    *###    ****###**** *##    ####  |
+{1}|__________________________________________________________________________|
+{1}                                           |                         |
+{1}   {0:37}   |       Version {2:4}      |
+{1}                                           |_________________________|
+    '''.format(quote, spacer, version)
+
+    colorsList = [
+        ("Red", colors.bg_red, colors.bg_red_bright),
+        ("Yellow", colors.bg_yellow, colors.bg_yellow_bright),
+        ("Green", colors.bg_green, colors.bg_green_bright),
+        ("Cyan", colors.bg_cyan, colors.bg_cyan_bright),
+        ("Blue", colors.bg_blue, colors.bg_blue_bright),
+        ("Indigo", colors.bg_indigo, colors.bg_indigo_bright)
+    ]
+
+    formattedLogo = ''
+    count = -2
+    for line in color_logo.split('\n'):
+        if count < 8:
+            color = colorsList[int(count / 2)]
+            line = line.replace('#', crayon(' ', color[1]))
+            line = line.replace('*', crayon(' ', color[2])) 
+            count += 1
+        formattedLogo += line + "\n"
+    
+    
+    print('{0:>200}'.format(formattedLogo))
+
+
+    
