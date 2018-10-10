@@ -5,8 +5,8 @@ Designed to work in the terminal, marvin is made to simplify tasks and act as a 
 
 The core is built on a dictionary in python, to help with new commands and speed. It is designed to be easy and simple to change and edit.
 
-![Example](https://github.com/Jeopardy/marvin/blob/master/images/Cover.png "Marvin")
+![Example](https://github.com/Jeopardy/marvin/blob/master/images/help.png "Marvin")
 
 Marvin is designed to be intuitive and simple to use, almost like a real person.
 
-![Plugin System](https://github.com/Jeopardy/marvin/blob/master/images/help.png "Marvin")
+![Plugin System](https://github.com/Jeopardy/marvin/blob/master/images/Cover.png "Marvin")
